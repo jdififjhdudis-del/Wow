@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07152f">
+  <meta name="description" content="استكشف المعلومات العامة لحسابات Roblox بسهولة.">
+  <title>ROBLOX INTEL — Profile Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#050b19;--panel:#0b1730;--panel2:#0e2040;--line:#1b3762;--blue:#3995ff;--cyan:#5bd8ff;--muted:#91a8c9;--white:#edf6ff}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--white);font-family:"IBM Plex Sans Arabic",Inter,sans-serif;background:radial-gradient(ellipse at 50% -20%,#123b72 0,transparent 50%),radial-gradient(circle at 90% 35%,#0c2c54 0,transparent 28%),var(--bg);overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#4e9cff18 1px,transparent 1px),linear-gradient(90deg,#4e9cff18 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+    .wrap{width:min(980px,calc(100% - 32px));margin:auto;position:relative}
+    header{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff10}
+    .brand{display:flex;align-items:center;gap:12px;font:800 15px Inter,sans-serif;letter-spacing:1.7px;direction:ltr}.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#5bd8ff,#2675ed);box-shadow:0 0 30px #298bff55;color:#061329;font-size:22px;font-weight:900}
+    .status{font-size:12px;color:#9db6d8;border:1px solid #24436b;border-radius:99px;padding:7px 12px;display:flex;gap:8px;align-items:center}.dot{width:7px;height:7px;background:#4fe0a0;border-radius:50%;box-shadow:0 0 12px #4fe0a0}
+    main{padding:78px 0 64px}.eyebrow{text-align:center;color:var(--cyan);font:700 11px Inter,sans-serif;letter-spacing:3px;direction:ltr}.hero h1{text-align:center;font-size:clamp(34px,6vw,58px);line-height:1.2;margin:18px 0 12px;font-weight:800;letter-spacing:-1.5px}.hero h1 span{background:linear-gradient(90deg,#fff,#65cfff 55%,#3988ff);background-clip:text;color:transparent}.sub{text-align:center;color:var(--muted);font-size:15px;margin:0 auto 34px;max-width:550px;line-height:1.9}
+    .searchbox{max-width:680px;margin:auto;padding:9px;display:flex;gap:9px;background:#0a1831dd;border:1px solid #285184;border-radius:17px;box-shadow:0 18px 70px #00102c99,0 0 0 5px #258bff0b;transition:.25s}.searchbox:focus-within{border-color:#55baff;box-shadow:0 18px 70px #00102c99,0 0 0 5px #258bff18}
+    input{min-width:0;flex:1;background:transparent;border:0;outline:0;color:white;padding:0 15px;font:500 15px "IBM Plex Sans Arabic",sans-serif;direction:ltr;text-align:left}input::placeholder{color:#7189ad}
+    button{border:0;border-radius:11px;padding:0 25px;min-height:49px;color:#03152d;background:linear-gradient(110deg,#5bd8ff,#398bff);font:700 14px "IBM Plex Sans Arabic",sans-serif;cursor:pointer;box-shadow:0 7px 24px #248bff38;transition:transform .2s,filter .2s}button:hover{transform:translateY(-2px);filter:brightness(1.1)}button:disabled{opacity:.55;cursor:wait;transform:none}
+    .hint{text-align:center;color:#7189ad;font-size:12px;margin:13px 0 0}
+    .message{min-height:25px;text-align:center;color:#ff9baf;font-size:13px;margin:15px 0}
+    .result{max-width:680px;margin:24px auto 0;display:none;animation:rise .55s cubic-bezier(.2,.8,.2,1) both}.result.show{display:block}
+    .profile{position:relative;overflow:hidden;background:linear-gradient(145deg,#10294d,#0a1730 70%);border:1px solid #285184;border-radius:22px;padding:27px;box-shadow:0 25px 80px #0007}
+    .profile:before{content:"";position:absolute;width:270px;height:270px;top:-170px;left:-80px;border-radius:50%;background:#258bff33;filter:blur(20px)}
+    .top{position:relative;display:flex;align-items:center;gap:22px}.avatar{width:116px;height:116px;object-fit:cover;border-radius:25px;border:2px solid #5abfff;box-shadow:0 0 35px #238aff55;background:#13294a}
+    .name{font:800 25px Inter,sans-serif;direction:ltr;text-align:right;overflow-wrap:anywhere}.display{color:#a9c3e4;margin-top:5px;font-size:15px}.uid{font:500 11px Inter,sans-serif;color:#7f9bbc;direction:ltr;margin-top:10px}
+    .pill{display:inline-flex;margin-top:12px;border:1px solid #285b91;color:#8edbff;border-radius:99px;padding:5px 10px;font-size:11px}
+    .bio{position:relative;color:#b5c9e4;line-height:1.9;font-size:13px;margin:22px 0 0;padding-top:17px;border-top:1px solid #ffffff13;white-space:pre-wrap;overflow-wrap:anywhere}
+    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:13px}.stat{background:#08152b;border:1px solid #1e3b63;border-radius:14px;padding:15px}.stat small{color:#819bbd;font-size:11px}.stat strong{display:block;font:700 15px Inter,sans-serif;margin-top:7px;direction:ltr;text-align:right}
+    .profilelink{display:inline-flex;margin-top:19px;color:#7ed5ff;text-decoration:none;font-size:13px}.profilelink:hover{text-decoration:underline}
+    footer{text-align:center;color:#587395;font-size:11px;padding:20px 0 35px;line-height:1.9}footer a{color:#78caff;text-decoration:none}
+    .loader{width:15px;height:15px;border:2px solid #09244855;border-top-color:#082349;border-radius:50%;display:inline-block;vertical-align:middle;animation:spin .7s linear infinite;margin-left:7px}
+    @keyframes spin{to{transform:rotate(360deg)}}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:560px){main{padding-top:55px}.searchbox{flex-direction:column;padding:8px}.searchbox input{height:47px;padding:0 12px}.searchbox button{width:100%}.top{gap:14px}.avatar{width:88px;height:88px;border-radius:19px}.name{font-size:19px}.profile{padding:19px}.stats{gap:8px}.stat{padding:12px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><div class="logo">R</div><span>ROBLOX INTEL</span></div>
+    <div class="status"><span class="dot"></span> Public data explorer</div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">PLAYER LOOKUP / 01</div>
+      <h1>اكتشف <span>ملف Roblox</span></h1>
+      <p class="sub">اكتب اسم المستخدم لاستعراض المعلومات العامة وصورة الحساب وتفاصيل الملف الشخصي مباشرة من Roblox.</p>
+      <form class="searchbox" id="searchForm" autocomplete="off">
+        <input id="username" name="username" maxlength="20" minlength="3" placeholder="Enter Roblox username..." aria-label="Roblox username" required>
+        <button id="searchBtn" type="submit">بحث عن الحساب <span>↗</span></button>
+      </form>
+      <div class="hint">لا تحتاج إلى كلمة مرور أو تسجيل دخول — اسم المستخدم فقط.</div>
+      <div class="message" id="message" role="status" aria-live="polite"></div>
+    </section>
+    <section class="result" id="result" aria-live="polite">
+      <div class="profile">
+        <div class="top">
+          <img class="avatar" id="avatar" alt="Roblox avatar" referrerpolicy="no-referrer">
+          <div>
+            <div class="name" id="handle"></div>
+            <div class="display" id="display"></div>
+            <div class="uid" id="uid"></div>
+            <span class="pill">PUBLIC PROFILE</span>
+          </div>
+        </div>
+        <div class="bio" id="bio"></div>
+        <div class="stats">
+          <div class="stat"><small>تاريخ إنشاء الحساب</small><strong id="created"></strong></div>
+          <div class="stat"><small>حالة الحساب</small><strong id="banned"></strong></div>
+        </div>
+        <a class="profilelink" id="profileLink" target="_blank" rel="noopener noreferrer">فتح الملف على Roblox ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer>ROBLOX INTEL is an independent fan-made tool and is not affiliated with Roblox Corporation.<br>يعرض الموقع البيانات العامة المتاحة فقط ولا يطلب بيانات تسجيل الدخول.</footer>
+</div>
+<script>
+const form=document.getElementById('searchForm'),input=document.getElementById('username'),btn=document.getElementById('searchBtn'),msg=document.getElementById('message'),result=document.getElementById('result');
+const $=id=>document.getElementById(id);
+function date(value){if(!value)return 'غير متاح';const d=new Date(value);return Number.isNaN(d.getTime())?'غير متاح':new Intl.DateTimeFormat('ar-IQ',{year:'numeric',month:'long',day:'numeric'}).format(d)}
+form.addEventListener('submit',async e=>{
+ e.preventDefault();const username=input.value.trim();
+ if(!/^[A-Za-z0-9_]{3,20}$/.test(username)){msg.textContent='اسم المستخدم غير صالح. استخدم 3–20 حرفاً أو رقماً أو _ فقط.';result.classList.remove('show');return}
+ btn.disabled=true;btn.innerHTML='<span class="loader"></span> جارٍ البحث';msg.textContent='نتحقق من بيانات الحساب...';result.classList.remove('show');
+ try{
+  const response=await fetch('/api/user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username})});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||'تعذر جلب بيانات الحساب. حاول لاحقاً.');
+  $('avatar').src=data.avatar||'';$('handle').textContent='@'+data.name;$('display').textContent=data.displayName||data.name;$('uid').textContent='USER ID  •  '+data.id;
+  $('bio').textContent=data.description||'لا توجد نبذة عامة لهذا الحساب.';$('created').textContent=date(data.created);$('banned').textContent=data.isBanned?'محظور':'غير محظور حسب البيانات العامة';
+  $('profileLink').href='https://www.roblox.com/users/'+encodeURIComponent(data.id)+'/profile';
+  result.classList.add('show');msg.textContent='';
+ }catch(err){msg.textContent=err.message;result.classList.remove('show')}
+ finally{btn.disabled=false;btn.textContent='بحث عن الحساب ↗'}
+});
+</script>
+</body>
+</html>
